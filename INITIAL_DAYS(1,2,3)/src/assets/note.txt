@@ -1,0 +1,19 @@
+CLient -> jasle req initiate grx [Frontend]
+Server -> jasle req ko response dinxa 
+Frontend
+Framework , library 
+React -> library --> Frontend design --> Meta
+VS CODE IS MADE BY REACT ELECTRON
+Vuejs -> Framework 
+Angular -> Framework
+
+More secure is  -> Framework
+Flexible -> Library.
+
+Backend
+Project installation -> Create -react - app - CRA ->Depricated
+Vite(fast, French word) , VUEJS -> Evan you
+
+http:localhost:5173 is also known as http://[::1]:5173/
+
+Transpilation , Compilation

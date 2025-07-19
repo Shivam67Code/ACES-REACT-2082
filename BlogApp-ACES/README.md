@@ -1,56 +1,32 @@
 # My React Learning Project
 
-This is the status of React By ACES WORKSHOP
+This is my React projecct from the aces workshop. (CUrrently going on...)
 
-## What I have so far
+## What I have build so far
 
 **Pages:**
+-Home Page
+-Create Page
+-Edit page
+-Single Page
+-Learning Page
 
-- Home page - shows cards in horizontal layout
-- Create page - form to create blog posts
-- Edit page - edit existing blog posts
-
-**Components:**
-\_Navbar
+**COmponents:**
+-Navbar
 -Card
--Some other components too.
+-LearningUseState
 
-## Setup commands
+##TechStack
+-React v19
+-VIte for build Tool
+Tailwind css for styling
+Axios for api calls
 
-First install everything:
+## API
 
-```
-npm install
-```
+Using mockapi.io for backend data: https://687af35cabb83744b7ee46db.mockapi.io/Blogs
 
-Install Tailwind CSS:
-
-```
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-```
-
-Update tailwind.config.js:
-
-```javascript
-module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-```
-
-Add to src/index.css:
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-Run the project:
+Run the project with :
 
 ```
 npm run dev
@@ -58,19 +34,41 @@ npm run dev
 
 ## Current status
 
-- Basic layout working
-- Cards display horizontally
-- Navbar works great
+- Home page fetches and displays blogs from API
+- Navigation works between all pages
+- Cards show blog data properly
+- Counter app works for learning useState
+- Responsive design with mobile menu
+- Edit form has all the fields working
 
 ## File structure
 
 ```
-src/
-  components/
-    Navbar.jsx
-    Card.jsx
-  pages/
-    Home.jsx
-    Create.jsx
-    EditPage.jsx
+BlogApp-ACES/
+  src/
+    components/
+      Card.jsx
+      LearningUseState.jsx
+      Navbar.jsx
+    pages/
+      Create.jsx
+      EditPage.jsx
+      Home.jsx
+      SinglePage.jsx
+    assets/
+      note.txt
+      react.svg
+    App.css
+    index.css
+    Layout.jsx
+    main.jsx
+  public/
+    vite.svg
+  package.json
+  vite.config.js
+  index.html
 ```
+
+## NOtes
+
+plannign to make it more advanced by myself by creating a proper blog website.

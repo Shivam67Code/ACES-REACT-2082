@@ -1,26 +1,22 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
-      {/* Mobile-Friendly Navbar */}
       <nav className="relative overflow-hidden rounded-xl border border-blue-500/20">
-        {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 backdrop-blur-md" />
-        {/* Floating Bubbles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute h-4 w-4 rounded-full bg-blue-400/10 animate-float top-4 left-[10%]" />
           <div className="absolute h-3 w-3 rounded-full bg-blue-400/10 animate-float top-8 left-[20%] [animation-delay:0.5s]" />
           <div className="absolute h-5 w-5 rounded-full bg-blue-400/10 animate-float top-6 left-[80%] [animation-delay:1s]" />
           <div className="absolute h-6 w-6 rounded-full bg-blue-400/10 animate-float top-2 left-[60%] [animation-delay:1.5s]" />
         </div>
-        {/* Main Navbar Content */}
         <div className="relative px-4 sm:px-8 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-3 group">
+            <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg blur group-hover:blur-md transition-all duration-300" />
                 <svg className="relative w-8 sm:w-10 h-8 sm:h-10 text-white transform group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
@@ -28,33 +24,35 @@ const Navbar = () => {
                 </svg>
               </div>
               <span className="text-xl sm:text-2xl font-bold text-white">SHIVAM KARN</span>
-            </div>
-            {/* Desktop Navigation */}
+            </Link>
             <div className="hidden md:flex items-center space-x-10">
-              <a href="/home" className="relative group">
+              <Link to="/home" className="relative group">
                 <span className="text-blue-100 group-hover:text-white transition-colors duration-300">Home</span>
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/20 group-hover:w-full transition-all duration-500 delay-100" />
-              </a>
-              <a href="/create" className="relative group">
+              </Link>
+              <Link to="/create" className="relative group">
                 <span className="text-blue-100 group-hover:text-white transition-colors duration-300">Create</span>
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/20 group-hover:w-full transition-all duration-500 delay-100" />
-              </a>
-              <a href="/edit" className="relative group">
+              </Link>
+              <Link to="/edit" className="relative group">
                 <span className="text-blue-100 group-hover:text-white transition-colors duration-300">Edit</span>
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/20 group-hover:w-full transition-all duration-500 delay-100" />
-              </a>
-              <a href="/single" className="relative group">
+              </Link>
+              <Link to="/single" className="relative group">
                 <span className="text-blue-100 group-hover:text-white transition-colors duration-300">Blogs Page</span>
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/20 group-hover:w-full transition-all duration-500 delay-100" />
-              </a>
+              </Link>
+              <Link to="/learning" className="relative group">
+                <span className="text-blue-100 group-hover:text-white transition-colors duration-300">Learning</span>
+                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
+                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/20 group-hover:w-full transition-all duration-500 delay-100" />
+              </Link>
             </div>
-            {/* Right Side Buttons */}
             <div className="flex items-center space-x-4">
-              {/* CTA Button (Hidden on smallest screens) */}
               <button className="hidden sm:flex relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200" />
                 <div className="relative px-5 sm:px-7 py-2 sm:py-3 bg-blue-950 rounded-lg leading-none flex items-center">
@@ -91,11 +89,11 @@ const Navbar = () => {
           {isOpen && (
             <div className="relative mt-4 md:hidden animate-slide-down">
               <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-900/50 backdrop-blur-sm rounded-lg border border-blue-500/10">
-                <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200">Home</a>
-                <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200">Features</a>
-                <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200">About</a>
-                <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200">Contact</a>
-                {/* Mobile CTA Button */}
+                <Link to="/home" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200" onClick={() => setIsOpen(false)}>Home</Link>
+                <Link to="/create" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200" onClick={() => setIsOpen(false)}>Create</Link>
+                <Link to="/edit" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200" onClick={() => setIsOpen(false)}>Edit</Link>
+                <Link to="/single" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200" onClick={() => setIsOpen(false)}>Blogs Page</Link>
+                <Link to="/learning" className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-200" onClick={() => setIsOpen(false)}>Learning</Link>
                 <div className="px-3 py-2">
                   <button className="w-full relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200" />

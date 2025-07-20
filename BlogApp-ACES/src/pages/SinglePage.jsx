@@ -111,7 +111,7 @@ function SinglePage() {
      <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-           <img src={blog.image}alt="blogImage"className="w-full h-80 md:h-96 lg:h-[500px] object-cover rounded-xl shadow-lg" 
+           <img src={blog.image}alt="blogImage"className="w-full h-80 md:h-96 lg:h-[500px] object-contain rounded-xl shadow-lg" 
            />
          </div>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">

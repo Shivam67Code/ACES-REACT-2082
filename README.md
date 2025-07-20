@@ -52,6 +52,10 @@ npm run dev
 - FOrm validations and error handling implemented
 - Consistent UI design with blue(Personal Fav. Color😁) colors
 - Loading states added for better use experience
+- ### Random Blog Functionality added
+- Visit `/single` to see a randomly selected blog
+- "Random Blog" button loads a new random blog without page refresh
+
 
 ## File structure
 

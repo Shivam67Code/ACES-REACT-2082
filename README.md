@@ -35,7 +35,9 @@ npm run dev
 ## Basic flow of Project
 
 1. **HOME** : VIew all blog posts
-2. **Create** : Make new blog posts with title,subtitle,description,image 3.**EDIT** : GO to /edit for new blog or edit/ID to edit existing blog 4.**SIngle**: Click any blog card to view full blog with edit/delete options
+2. **Create** : Make new blog posts with title,subtitle,description,image
+3. **EDIT** : GO to /edit for new blog or edit/ID to edit existing blog
+4. **SIngle**: Click any blog card to view full blog with edit/delete options
 
 ## Current status
 

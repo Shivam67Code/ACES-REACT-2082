@@ -108,7 +108,7 @@ if (loading){
   return(
     <div className='min-h-screen bg-gray-100 flex items-center justify-center'>
       <div className='text-center'>
-        <div className='text-blue-600 text-xl'> Please wait while we load the blog...</div>
+        <div className='text-blue-600 text-3xl'> Please wait while we load the blog...</div>
       </div>
     </div>
   )

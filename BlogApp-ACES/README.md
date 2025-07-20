@@ -32,6 +32,11 @@ Run the project with :
 npm run dev
 ```
 
+## Basic flow of Project
+
+1. **HOME** : VIew all blog posts
+2. **Create** : Make new blog posts with title,subtitle,description,image 3.**EDIT** : GO to /edit for new blog or edit/ID to edit existing blog 4.**SIngle**: Click any blog card to view full blog with edit/delete options
+
 ## Current status
 
 - Home page fetches and displays blogs from API
@@ -40,6 +45,11 @@ npm run dev
 - Counter app works for learning useState
 - Responsive design with mobile menu
 - Edit form has all the fields working
+- Edit page now works with URL parmeters(edit/6 loads blog 5 for editing)
+- API integration complete for all blog operations
+- FOrm validations and error handling implemented
+- Consistent UI design with blue(Personal Fav. Color) colors
+- Loading states added for better use experience
 
 ## File structure
 
@@ -69,6 +79,16 @@ BlogApp-ACES/
   index.html
 ```
 
+## Routes created
+
+- `/` - Welcome page
+- `/home` - All blog posts
+- `/create` - Create new blog form
+- `/edit` - Create new blog
+- `/edit/:id` - Edit specific blog by ID
+- `/single/:id` - View specific blog by ID
+- `/learning` - useState practice counter
+
 ## NOtes
 
-plannign to make it more advanced by myself by creating a proper blog website.
+NEarly everything is done(I guess 🤔 ) Specially the Create and Edit page UI.

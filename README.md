@@ -48,7 +48,7 @@ npm run dev
 - Edit page now works with URL parmeters(edit/6 loads blog 5 for editing)
 - API integration complete for all blog operations
 - FOrm validations and error handling implemented
-- Consistent UI design with blue(Personal Fav. Color) colors
+- Consistent UI design with blue(Personal Fav. Color😁) colors
 - Loading states added for better use experience
 
 ## File structure

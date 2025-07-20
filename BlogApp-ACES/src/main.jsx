@@ -18,6 +18,7 @@ const router = createBrowserRouter(
       <Route path="edit" element={<EditPage/>}/>      
       <Route path="edit/:id" element={<EditPage/>}/>
       <Route path="single/:id" element={<SinglePage/>}/>
+      <Route path="single" element={<SinglePage/>}/>
       <Route path="create" element={<Create/>}/>
       <Route path="learning" element={<LearningUseState/>}/>
     </Route>

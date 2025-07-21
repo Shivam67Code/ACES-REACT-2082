@@ -6,11 +6,12 @@ BlogApp-ACES/
     components/
       Card.jsx
       LearningUseState.jsx
-      Navbar.jsx 
+      Navbar.jsx
     pages/
       Create.jsx
       EditPage.jsx
       Home.jsx
+      Liked.jsx
       SinglePage.jsx
     assets/
       note.txt
@@ -39,12 +40,14 @@ This is my React projecct from the aces workshop.
 
 ### **v2.0 Enhancements**
 
-- ✅ **Live Preview** - Side-by-side editing experience
-- ✅ **Enhanced UI Design** - Modern gradients, shadows, and animations
-- ✅ **Loading States** - Smooth loading animations across all pages
-- ✅ **Image Fallbacks** - Default images when URLs fail
-- ✅ **Floating Actions** - Modern floating create button
-- ✅ **Error Handling** - Improved error messages and validation
+-**LIKED** (💖) - View and manage liked blog posts
+
+- **Live Preview** - Side-by-side editing experience
+- **Enhanced UI Design** - Modern gradients, shadows, and animations
+- **Loading States** - Smooth loading animations across all pages
+- **Image Fallbacks** - Default images when URLs fail
+- **Floating Actions** - Modern floating create button
+- **Error Handling** - Improved error messages and validation
 
 ## Basic flow of Project
 
@@ -87,4 +90,4 @@ npm run dev
 
 ## NOtes
 
-NEarly everything is done Just the Deployment is left (Maybe with vercel or netlify or something other). Today I made major changes in the UI of the create and Edit pages keeping their core functionalities same. 
+NEarly everything is done(I guess 🤔 ) Specially the Create and Edit page UI.

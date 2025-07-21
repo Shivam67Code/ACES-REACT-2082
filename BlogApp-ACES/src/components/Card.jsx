@@ -1,12 +1,58 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 const Card = ({blog}) => {
-    if(!blog){
-        return null
+  const [isLiked, setIsLiked] = useState(false)
+
+  useEffect(() => {
+    // check if blog is already liked
+    const savedLikes = localStorage.getItem('likedBlogs')
+    if (savedLikes) {
+      const likedBlogs = JSON.parse(savedLikes)
+      setIsLiked(likedBlogs.some(likedBlog => likedBlog.id === blog.id))
+    }
+  }, [blog.id])
+
+  const handleLike = (e) => {
+    e.preventDefault() 
+    
+    const savedLikes = localStorage.getItem('likedBlogs')
+    let likedBlogs = savedLikes ? JSON.parse(savedLikes) : []
+    
+    if (isLiked) {
+      // Remove from likes
+      likedBlogs = likedBlogs.filter(likedBlog => likedBlog.id !== blog.id)
+      setIsLiked(false)
+    } else {
+      // Add to likes
+      likedBlogs.push(blog)
+      setIsLiked(true)
     }
     
+    localStorage.setItem('likedBlogs', JSON.stringify(likedBlogs))
+  }
+
+  if(!blog){
+    return null
+  }
+    
   return (
-    <div className="bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
+      {/* Like Button */}
+      <button
+        onClick={handleLike}
+        className={`absolute top-3 right-3 z-10 w-10 h-10 rounded-full shadow-md transition-all duration-300 flex items-center justify-center ${
+          isLiked 
+            ? 'bg-red-500 text-white hover:bg-red-600' 
+            : 'bg-white text-gray-400 hover:text-red-500 hover:bg-red-50'
+        }`}
+        title={isLiked ? 'Unlike this post' : 'Like this post'}
+      >
+        <span className="text-lg">
+          {isLiked ? '❤️' : '🤍'}
+        </span>
+      </button>
+
       <Link to={"/single/" + blog.id}>
         <img 
           className="w-full h-48 object-cover" 

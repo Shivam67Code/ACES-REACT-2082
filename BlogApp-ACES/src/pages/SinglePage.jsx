@@ -5,13 +5,40 @@ import axios from 'axios'
 import {useParams,useNavigate,Link} from 'react-router-dom'
 
 function SinglePage() {
-  const navigate =  useNavigate()
-  
-   const [blog, setBlog] = useState({})
-   const [loading, setLoading] = useState(true)
-   const { id } = useParams()
+  const navigate = useNavigate()
+  const [blog, setBlog] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [isLiked, setIsLiked] = useState(false) // ADD THIS
+  const { id } = useParams()
 
-   async function fetchBlog(){
+  // ADD THIS FUNCTION
+  const checkIfLiked = () => {
+    const savedLikes = localStorage.getItem('likedBlogs')
+    if (savedLikes && blog.id) {
+      const likedBlogs = JSON.parse(savedLikes)
+      setIsLiked(likedBlogs.some(likedBlog => likedBlog.id === blog.id))
+    }
+  }
+
+  // ADD THIS FUNCTION
+  const handleLike = () => {
+    const savedLikes = localStorage.getItem('likedBlogs')
+    let likedBlogs = savedLikes ? JSON.parse(savedLikes) : []
+    
+    if (isLiked) {
+      // Remove from likes
+      likedBlogs = likedBlogs.filter(likedBlog => likedBlog.id !== blog.id)
+      setIsLiked(false)
+    } else {
+      // Add to likes
+      likedBlogs.push(blog)
+      setIsLiked(true)
+    }
+    
+    localStorage.setItem('likedBlogs', JSON.stringify(likedBlogs))
+  }
+
+  async function fetchBlog(){
     try {
       setLoading(true)
       
@@ -49,12 +76,15 @@ function SinglePage() {
     }
   }
 
-  useEffect(()=>{
-
-
-      fetchBlog()
   
-  },[id])
+  useEffect(() => {
+    fetchBlog()
+  }, [id])
+
+  // Aded NEW useEffect for checking likes
+  useEffect(() => {
+    checkIfLiked()
+  }, [blog])
 
   const handleDelete = async () =>{
     const confirmDelete = window.confirm(" Are you sure you want to delte this post???")
@@ -125,58 +155,79 @@ function SinglePage() {
   }
    return (
      <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-  <img 
-    className="h-96 w-full object-contain rounded-lg shadow-lg mb-8" 
-    src={blog.image || 'https://static.vecteezy.com/system/resources/previews/048/926/084/non_2x/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg'} 
-    alt={blog.title}
-    onError={(e) => {
-      e.target.src = 'https://static.vecteezy.com/system/resources/previews/048/926/084/non_2x/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg'
-    }}
-  />
-</div>
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
-           <div className="mb-6">
-             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-               {blog.title}
-             </h1>
-             <h2 className="text-xl md:text-2xl text-gray-600 mb-6">
-               {blog.subtitle}
-             </h2>
-           </div>
-           <div className="prose max-w-none mb-8">
-             <p className="text-lg text-gray-800 mb-6">
-               {blog.description}
-             </p>
-           </div>
-           <div className="border-t pt-6 mb-8">
-             <p className="text-blue-600 font-medium">
-               Published: {blog.createdAt}
-             </p>
-           </div>
-           <div className="flex flex-wrap gap-4">
-             <button 
-               onClick={handleDelete} 
-             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl shadow-md transition-colors"
-             >🗑️DELETE POST
-             </button>
-             <button onClick={() => navigate('/home')} 
-               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl shadow-md transition-colors"
-             >🏠Back to Home
-             </button>
-             <button onClick={handleRandomBlog}className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl shadow-md transition-colors"
-             >♻️ Random Blog
-             </button>
-             <Link to={'/edit/' + blog.id}>
-             <button className="bg-amber-600 hover:bg-green-700 text-white px-6 py-3 rounded-4xl shadow-md transition-colors"
-             >✍🏻 Edit Blog
-             </button>
-             </Link>
-           </div>
-         </div>
-       </div>
-     </div>
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8 bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-200">
+        <img 
+          className="h-96 w-full object-contain rounded-xl shadow-md" 
+          src={blog.image || 'https://static.vecteezy.com/system/resources/previews/048/926/084/non_2x/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg'} 
+          alt={blog.title}
+          onError={(e) => {
+            e.target.src = 'https://static.vecteezy.com/system/resources/previews/048/926/084/non_2x/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg'
+          }}
+        />
+      </div>
+      
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border-2 border-gray-200 p-8">
+        <div className="mb-6">
+          <h1 className="text-4xl text-center md:text-5xl font-bold text-blue-500 mb-4">
+            {blog.title}
+          </h1>
+          {/* <h2 className="text-xl md:text-2xl text-gray-600 mb-6">
+            {blog.subtitle}
+          </h2> */}
+        </div>
+        
+        <div className="prose max-w-none mb-8">
+          <p className="text-lg text-gray-800 mb-6">
+            <span className='text-blue-600 font-semibold text-md'>Description of the blog:</span> <br></br>
+            {blog.description}
+          </p>
+        </div>
+        
+        <div className="border-t pt-6 mb-8">
+          <p className="text-blue-600 font-medium">
+            Published: {blog.createdAt}
+          </p>
+        </div>
+        
+        <div className="flex flex-wrap justify-evenly gap-4 mb-6">
+          <button 
+            onClick={handleLike}
+            className={`px-6 py-3 rounded-2xl shadow-md transition-all duration-300 ${
+              isLiked 
+                ? 'bg-pink-600 hover:bg-pink-900 text-white' 
+                : 'bg-pink-300 hover:bg-red-50 text-gray-700 hover:text-pink-700'
+            }`}
+          >
+            {isLiked ? '❤️ Liked' : '🤍 Like'}
+          </button>
+          
+          <button onClick={() => navigate('/home')} 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl shadow-md transition-colors"
+          >🏠Back to Home
+          </button>
+          
+          <button onClick={handleRandomBlog} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl shadow-md transition-colors"
+          >♻️ Random Blog
+          </button>
+          
+          <Link to={'/edit/' + blog.id}>
+            <button className="bg-amber-600 hover:bg-green-700 text-white px-6 py-3 rounded-4xl shadow-md transition-colors"
+            >✍🏻 Edit Blog
+            </button>
+          </Link>
+        </div>
+
+        <div className="flex justify-center items-center border-t pt-4">
+          <button 
+            onClick={handleDelete} 
+            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl shadow-md transition-colors"
+          >🗑️DELETE POST
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
    )
 }
 

@@ -9,6 +9,7 @@ import EditPage from "./pages/EditPage"
 import SinglePage from "./pages/SinglePage"
 import Create from "./pages/Create"
 import LearningUseState from "./components/LearningUseState"
+import Liked from './pages/Liked.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="single/:id" element={<SinglePage/>}/>
       <Route path="single" element={<SinglePage/>}/>
       <Route path="create" element={<Create/>}/>
+      <Route path="liked" element={<Liked/>}/>
       <Route path="learning" element={<LearningUseState/>}/>
     </Route>
   )

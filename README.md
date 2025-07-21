@@ -1,3 +1,31 @@
+
+## File structure
+
+```
+BlogApp-ACES/
+  src/
+    components/
+      Card.jsx
+      LearningUseState.jsx
+      Navbar.jsx
+    pages/
+      Create.jsx
+      EditPage.jsx
+      Home.jsx
+      SinglePage.jsx
+    assets/
+      note.txt
+      react.svg
+    App.css
+    index.css
+    Layout.jsx
+    main.jsx
+  public/
+    vite.svg
+  package.json
+  vite.config.js
+  index.html
+```
 # My React Learning Project
 
 This is my React projecct from the aces workshop. (CUrrently going on...)
@@ -56,34 +84,6 @@ npm run dev
 - Visit `/single` to see a randomly selected blog
 - "Random Blog" button loads a new random blog without page refresh
 
-
-## File structure
-
-```
-BlogApp-ACES/
-  src/
-    components/
-      Card.jsx
-      LearningUseState.jsx
-      Navbar.jsx
-    pages/
-      Create.jsx
-      EditPage.jsx
-      Home.jsx
-      SinglePage.jsx
-    assets/
-      note.txt
-      react.svg
-    App.css
-    index.css
-    Layout.jsx
-    main.jsx
-  public/
-    vite.svg
-  package.json
-  vite.config.js
-  index.html
-```
 
 ## Routes created
 

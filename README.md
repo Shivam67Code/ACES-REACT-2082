@@ -1,4 +1,3 @@
-
 ## File structure
 
 ```
@@ -26,29 +25,31 @@ BlogApp-ACES/
   vite.config.js
   index.html
 ```
+
 # My React Learning Project
 
-This is my React projecct from the aces workshop. (CUrrently going on...)
+This is my React projecct from the aces workshop.
+**Status:** **Production Ready** - All core features implemented with a good UI
 
-## What I have build so far
+**Last Updated:** Shrawan 05
 
-**Pages:**
--Home Page
--Create Page
--Edit page
--Single Page
--Learning Page
+**Author:** Shivam Karn (ACES Workshop Participant)
 
-**COmponents:**
--Navbar
--Card
--LearningUseState
+## Recent Updates(2082-04-05)
 
-##TechStack
--React v19
--VIte for build Tool
-Tailwind css for styling
-Axios for api calls
+### **v2.0 Enhancements**
+
+- ✅ **Live Preview** - Side-by-side editing experience
+- ✅ **Enhanced UI Design** - Modern gradients, shadows, and animations
+- ✅ **Loading States** - Smooth loading animations across all pages
+- ✅ **Image Fallbacks** - Default images when URLs fail
+- ✅ **Floating Actions** - Modern floating create button
+- ✅ **Error Handling** - Improved error messages and validation
+
+## Basic flow of Project
+
+1. **HOME** : VIew all blog posts
+2. **Create** : Make new blog posts with title,subtitle,description,image 3.**EDIT** : GO to /edit for new blog or edit/ID to edit existing blog 4.**SIngle**: Click any blog card to view full blog with edit/delete options
 
 ## API
 
@@ -60,13 +61,6 @@ Run the project with :
 npm run dev
 ```
 
-## Basic flow of Project
-
-1. **HOME** : VIew all blog posts
-2. **Create** : Make new blog posts with title,subtitle,description,image
-3. **EDIT** : GO to /edit for new blog or edit/ID to edit existing blog
-4. **SIngle**: Click any blog card to view full blog with edit/delete options
-
 ## Current status
 
 - Home page fetches and displays blogs from API
@@ -75,15 +69,11 @@ npm run dev
 - Counter app works for learning useState
 - Responsive design with mobile menu
 - Edit form has all the fields working
-- Edit page now works with URL parmeters(edit/6 loads blog 5 for editing)
+- Edit page now works with URL parmeters(edit/6 loads blog 6 for editing)
 - API integration complete for all blog operations
 - FOrm validations and error handling implemented
-- Consistent UI design with blue(Personal Fav. Color😁) colors
+- Consistent UI design with blue(Personal Fav. Color 😁) colors
 - Loading states added for better use experience
-- ### Random Blog Functionality added
-- Visit `/single` to see a randomly selected blog
-- "Random Blog" button loads a new random blog without page refresh
-
 
 ## Routes created
 
@@ -97,4 +87,4 @@ npm run dev
 
 ## NOtes
 
-NEarly everything is done(I guess 🤔 ) Specially the Create and Edit page UI.
+NEarly everything is done Just the Deployment is left (Maybe with vercel or netlify or something other). Today I made major changes in the UI of the create and Edit pages keeping their core functionalities same. 

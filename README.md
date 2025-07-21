@@ -6,7 +6,7 @@ BlogApp-ACES/
     components/
       Card.jsx
       LearningUseState.jsx
-      Navbar.jsx
+      Navbar.jsx 
     pages/
       Create.jsx
       EditPage.jsx

@@ -13,7 +13,7 @@ import LearningUseState from "./components/LearningUseState"
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout/>}>
-      <Route path="" element={<div className="bg-red-600 text-white p-4 rounded-lg mx-4 mt-4"><h1 className="text-2xl font-bold">Welcome to the Index Page</h1><p className="mt-2">Navigate using the menu above to explore different sections.</p></div>}/>
+      <Route path="" element={<Home/>}/>
       <Route path="home" element={<Home/>}/>
       <Route path="edit" element={<EditPage/>}/>      
       <Route path="edit/:id" element={<EditPage/>}/>

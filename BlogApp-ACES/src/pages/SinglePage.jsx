@@ -1,6 +1,8 @@
+// how about when user clicks on edit user gets live preview of the blog side by side of the edit page 
+
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import {useParams,useNavigate} from 'react-router-dom'
+import {useParams,useNavigate,Link} from 'react-router-dom'
 
 function SinglePage() {
   const navigate =  useNavigate()
@@ -48,7 +50,10 @@ function SinglePage() {
   }
 
   useEffect(()=>{
-    fetchBlog()
+
+
+      fetchBlog()
+  
   },[id])
 
   const handleDelete = async () =>{
@@ -66,6 +71,11 @@ function SinglePage() {
       alert("Error deleting blog")
     }
   }
+
+  // add edit button here
+  // const handleEdit = ()=>{
+  //     navigate(`/edit/${id}`)
+  // }
 
   const handleRandomBlog = async () => {
     try {
@@ -90,10 +100,16 @@ function SinglePage() {
     }
   }
 
-  if(loading) {
-    return <div className="p-8 text-center text-blue-600 text-3xl">Please wait the page is Loading...</div>
+ if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 text-lg">Loading amazing blogs...</p>
+        </div>
+      </div>
+    )
   }
-
   if(!blog || Object.keys(blog).length === 0) {
     return (
       <div className="p-8 text-center">
@@ -111,9 +127,15 @@ function SinglePage() {
      <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-           <img src={blog.image}alt="blogImage"className="w-full h-80 md:h-96 lg:h-[500px] object-contain rounded-xl shadow-lg" 
-           />
-         </div>
+  <img 
+    className="h-96 w-full object-contain rounded-lg shadow-lg mb-8" 
+    src={blog.image || 'https://static.vecteezy.com/system/resources/previews/048/926/084/non_2x/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg'} 
+    alt={blog.title}
+    onError={(e) => {
+      e.target.src = 'https://static.vecteezy.com/system/resources/previews/048/926/084/non_2x/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg'
+    }}
+  />
+</div>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
            <div className="mb-6">
              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -136,16 +158,21 @@ function SinglePage() {
            <div className="flex flex-wrap gap-4">
              <button 
                onClick={handleDelete} 
-             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg shadow-md transition-colors"
-             >DELETE POST
+             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl shadow-md transition-colors"
+             >🗑️DELETE POST
              </button>
              <button onClick={() => navigate('/home')} 
-               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition-colors"
-             >Back to Home
+               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl shadow-md transition-colors"
+             >🏠Back to Home
              </button>
-             <button onClick={handleRandomBlog}className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-md transition-colors"
-             >Random Blog
+             <button onClick={handleRandomBlog}className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl shadow-md transition-colors"
+             >♻️ Random Blog
              </button>
+             <Link to={'/edit/' + blog.id}>
+             <button className="bg-amber-600 hover:bg-green-700 text-white px-6 py-3 rounded-4xl shadow-md transition-colors"
+             >✍🏻 Edit Blog
+             </button>
+             </Link>
            </div>
          </div>
        </div>

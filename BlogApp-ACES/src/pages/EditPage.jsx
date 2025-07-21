@@ -1,3 +1,10 @@
+/* How about when user clicks on edit user gets live preview of the blog side by side of the edit page 
+
+   APPLY IT HEREEEEEEEEE
+
+   -> Also in the subtitle selection drop down give use a other option in which user can specify option
+ */
+
 import React,{useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -13,6 +20,7 @@ const Edit = () =>{
     createdAt:''
   })
   const[loading,setLoading] = useState(false)
+  const [showPreview,setShowPreview] = useState(false)
 
   // function to fetch specific blog if user Enters Id
   useEffect(()=>{
@@ -85,7 +93,7 @@ const handlePreview = ()=>{
   if(id){
     navigate(`/single/${id}`)
   }else{
-    alert("Save the blof first to preview")
+    alert("Save the blog first to preview")
   }
 }
 const handleDelete = async () =>{
@@ -104,148 +112,213 @@ const handleDelete = async () =>{
     }
   }
 }
-if (loading){
-  return(
-    <div className='min-h-screen bg-gray-100 flex items-center justify-center'>
-      <div className='text-center'>
-        <div className='text-blue-600 text-3xl'> Please wait while we load the blog...</div>
+if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 text-lg">Loading amazing blogs...</p>
+        </div>
       </div>
-    </div>
-  )
-}
-
+    )
+  }
 return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto p-4 max-w-4xl">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-blue-800">
-            {id ? 'Edit Blog Post' : 'Create New Blog'}
-          </h1>
-          
-          <div className="flex gap-2">
-            <button
-              onClick={handleSave}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
-            >
-              {id ? 'Update' : 'Save'}
-            </button>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="bg-white rounded-lg shadow p-4 mb-4">
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-gray-800">
+              {id ? 'Edit Blog Post' : 'Create New Blog'}
+            </h1>
             
-            <button
-              onClick={handlePreview}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg"
-            >
-              Preview
-            </button>
-            
-            {id && (
+            <div className="flex gap-2">
               <button
-                onClick={handleDelete}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
+                onClick={() => setShowPreview(!showPreview)}
+                className={`px-4 py-2 rounded transition-colors duration-200 ${
+                  showPreview ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700'
+                } hover:bg-green-600`}
               >
-                Delete
+                {showPreview ? 'Hide Preview' : 'Show Preview'}
               </button>
-            )}
+              
+              <button
+                onClick={handleSave}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-200"
+              >
+                {id ? 'Update' : '🗃️Save'}
+              </button>
+              
+              <button
+                onClick={handlePreview}
+                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors duration-200"
+              >
+                🔍Full Preview
+              </button>
+              
+              {id && (
+                <button
+                  onClick={handleDelete}
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition-colors duration-200"
+                >
+                  🗑️Delete
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <div className="space-y-6">
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">Blog Title</label>
-              <input
-                type="text"
-                name="title"
-                value={blogData.title}
-                onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
-                placeholder="Enter your blog title"
-              />
-            </div>
+        {/* Main Content */}
+        <div className="flex gap-4 transition-all duration-500 ease-in-out">
+          {/* Edit Form */}
+          <div className={`bg-white rounded-lg shadow p-6 transition-all duration-500 ease-in-out ${
+            showPreview ? 'w-1/2' : 'w-full'
+          }`}>
+            <h2 className="text-lg font-semibold mb-4 text-gray-700">Edit Blog</h2>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-gray-600 font-medium mb-2">Blog Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={blogData.title}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded focus:border-blue-500 outline-none transition-colors duration-200"
+                  placeholder="Enter your blog title"
+                />
+              </div>
 
-            <div className="flex justify-center">
-              <div className="w-full max-w-md">
-                <label className="block text-gray-700 font-medium mb-2 text-center">Sub TITle</label>
+              <div>
+                <label className="block text-gray-600 font-medium mb-2">Subtitle</label>
                 <select
                   name="sub-title"
                   value={blogData['sub-title']}
-                    onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded focus:border-blue-500 outline-none transition-colors duration-200"
                 >
-                  <option value="">Selecct a SUb TItle</option>
-                  <option value="TEchnology">TEchnology</option>
-                  <option value="LifeStyle">LifeStyle</option>
-                    <option value="Travel">Travel</option>
+                  <option value="">Select a Subtitle</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Lifestyle">Lifestyle</option>
+                  <option value="Travel">Travel</option>
                   <option value="Food">Food</option>
-                  <option value="Sportss">Sportss</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
-            </div>
 
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">Blog Description</label>
-                <textarea
-                name="description"
-                value={blogData.description}
-                onChange={handleInputChange}
-                rows="10"
-                className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
-                placeholder="Write your blog content here..."
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">Blog Image URL</label>
-              <input
-                type="text"
-                name="image"
-                value={blogData.image}
-                onChange={handleInputChange}
-                className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
-                placeholder="Enter image URL"
-              />
-              {blogData.image && (
-                <img src={blogData.image} alt="Preview" className="mt-2 w-32 h-32 object-cover rounded" />
-              )}
-            </div>
-
-            {id && (
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Created At</label>
-                <input
-                  type="text"
-                    name="createdAt"
-                  value={blogData.createdAt}
+                <label className="block text-gray-600 font-medium mb-2">Blog Content</label>
+                <textarea
+                  name="description"
+                  value={blogData.description}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
-                  placeholder="Creation date"
+                  rows={showPreview ? "8" : "12"}
+                  className="w-full p-3 border rounded focus:border-blue-500 outline-none transition-all duration-200"
+                  placeholder="Write your blog content here..."
                 />
               </div>
-            )}
 
-            <div className="flex justify-end gap-3 pt-4">
-              <button
-                type="button"
-                className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-2 rounded-lg"
+              <div>
+                <label className="block text-gray-600 font-medium mb-2">Image URL</label>
+                <input
+                  type="text"
+                  name="image"
+                  value={blogData.image}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded focus:border-blue-500 outline-none transition-colors duration-200"
+                  placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
+                />
+              </div>
+
+              {id && (
+                <div>
+                  <label className="block text-gray-600 font-medium mb-2">Created At</label>
+                  <input
+                    type="text"
+                    name="createdAt"
+                    value={blogData.createdAt}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border rounded focus:border-blue-500 outline-none transition-colors duration-200"
+                    placeholder="Creation date"
+                  />
+                </div>
+              )}
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-2 rounded transition-colors duration-200"
                   onClick={() => {
                     alert('Changes cancelled')
                     navigate('/home')
                   }}
-              >Cancel
-              </button>
-              <button
-                onClick={handleSave}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg"
-              >
-              {id ? 'Update Changes' : 'Save Changes'}
-              </button>
+                >
+                  Cancel
+                </button>
+                
+                <button
+                  onClick={handleSave}
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition-colors duration-200"
+                >
+                  {id ? 'Update Changes' : 'Save Changes'}
+                </button>
+              </div>
             </div>
+          </div>
+
+          {/* Live Preview with opens with a subtle animation */}
+          <div className={`bg-white rounded-lg shadow p-6 transition-all duration-500 ease-in-out overflow-hidden ${
+            showPreview ? 'w-1/2 opacity-100 translate-x-0' : 'w-0 opacity-0 translate-x-full'
+          }`}>
+            {showPreview && (
+              <div className="h-full">
+                <h2 className="text-lg font-semibold mb-4 text-gray-700">Live Preview</h2>
+                
+                <div className="border rounded-lg p-4 bg-gray-50 h-full overflow-y-auto">
+                  {/* Preview Header */}
+                  <div className="mb-4">
+                    <h1 className="text-xl font-bold text-gray-800 mb-2 break-words">
+                      {blogData.title || 'Your Blog Title'}
+                    </h1>
+                    
+                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-4 flex-wrap">
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                        {blogData['sub-title'] || 'Category'}
+                      </span>
+                      <span className="text-xs">{blogData.createdAt || 'Today'}</span>
+                    </div>
+                  </div>
+
+                  {/* Preview Image */}
+                  {blogData.image && (
+                    <div className="mb-4">
+                      <img 
+                        src={blogData.image} 
+                        alt="Blog preview" 
+                        className="w-full h-32 object-contain rounded border"
+                        onError={(e) => {
+                          e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4='
+                          e.target.alt = 'Image not found'
+                        }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Preview Content */}
+                  <div className="text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed">
+                    {blogData.description || 'Your blog content will appear here...'}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
+
+
   )
-
-
 }
 
 export default Edit

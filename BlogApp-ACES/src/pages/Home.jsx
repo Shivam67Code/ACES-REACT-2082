@@ -87,10 +87,10 @@ const Home = () => {
       {/* A new Floating Create Button */}
       <button 
         onClick={() => navigate('/create')}
-        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-sm font-bold z-50"
+        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-2xl font-bold z-50"
         title="Create New Blog"
       >
-        <span className="text-lg mr-2">+</span>
+        <span className='text-lg mr-2'>  + </span>
         Create New Blog
       </button>
 
